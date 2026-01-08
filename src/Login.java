@@ -39,7 +39,7 @@ public class Login extends JFrame {
 
                     contadorLogin = 0;
 
-                }else if (contadorLogin > 3) {
+                }else if (contadorLogin > 2) {
                         JOptionPane.showMessageDialog(null, "Massa intents. L'aplicació es bloquejarà 5 segons.");
 
                         if(Dades.dadesUsuari.containsKey(correu)){
