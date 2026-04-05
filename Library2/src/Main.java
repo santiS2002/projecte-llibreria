@@ -1,0 +1,19 @@
+import services.Manager;
+import gui.MainPage;
+import core.Book;
+
+public class Main {
+    public static void main(String[] args) {
+        Manager manager = new Manager();
+
+
+        manager.addBook(new Book(1, "The Great Gatsby", "F. Scott Fitzgerald", "Classic", true));
+        manager.addBook(new Book(2, "1984", "George Orwell", "Dystopian", true));
+        manager.addBook(new Book(3, "The Hobbit", "J.R.R. Tolkien", "Fantasy", true));
+
+
+        new MainPage(manager);
+
+        System.out.println("Library System is running...");
+    }
+}
