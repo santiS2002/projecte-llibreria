@@ -1,16 +1,26 @@
 package core;
 
+
+import persistence.dao.Loan;
+
+import java.util.List;
+
 public abstract class Person {
     private String mail;
     private String name;
     private String dni;
     private String password;
+    List<Loan> listLoans;
 
-    public Person(String mail, String name, String dni, String password) {
+    public Person(String mail, String name, String dni, String password, List<Loan> listLoans) {
         this.mail = mail;
         this.name = name;
         this.dni = dni;
         this.password = password;
+        this.listLoans = listLoans;
+    }
+
+    public Person() {
     }
 
     public String getMail() {
@@ -43,6 +53,14 @@ public abstract class Person {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Loan> getListLoans() {
+        return listLoans;
+    }
+
+    public void setListLoans(List<Loan> listLoans) {
+        this.listLoans = listLoans;
     }
 
     @Override
