@@ -19,6 +19,12 @@ public abstract class Person {
         this.password = password;
         this.listLoans = listLoans;
     }
+    public Person(String mail, String name, String dni, String password) {
+        this.mail = mail;
+        this.name = name;
+        this.dni = dni;
+        this.password = password;
+    }
 
     public Person() {
     }

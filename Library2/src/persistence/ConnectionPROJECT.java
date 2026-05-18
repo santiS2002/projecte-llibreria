@@ -9,7 +9,7 @@ public class ConnectionPROJECT {
 
     //    private static final String DB_URL = "jdbc:sqlite:data/chinook.sqlite";
     private static final String DB_URL =
-            "jdbc:sqlite:" + Path.of("data", "chinook.sqlite").toAbsolutePath();
+            "jdbc:sqlite:" + Path.of("identifier.sqlite").toAbsolutePath();
     public static Connection getConnection() throws SQLException, ClassNotFoundException {
         Class.forName("org.sqlite.JDBC");
 

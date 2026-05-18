@@ -55,8 +55,8 @@ public class Manager implements IAdminActions, IUserActions, IVerification {
         for(Map.Entry<Integer,Book>entry:library.getColeccioLlibres().entrySet()){
             Book book = entry.getValue();
 
-            if(book.getTitle().equalsIgnoreCase(bookTitle) && book.isDisponible()){
-                book.setDisponible(false);
+            if(book.getTitle().equalsIgnoreCase(bookTitle) && (book.getDisponible() == 1)){
+                book.setDisponible(0);
                 borrowedBooks.get(mail).add(book);
                 return true;
             }
@@ -72,7 +72,7 @@ public class Manager implements IAdminActions, IUserActions, IVerification {
             Book book = userBooks.get(i);
 
             if(book.getTitle().equalsIgnoreCase(bookTitle)){
-                book.setDisponible(true);
+                book.setDisponible(1);
                 userBooks.remove(i);
                 return true;
             }
@@ -93,7 +93,7 @@ public class Manager implements IAdminActions, IUserActions, IVerification {
         for(Map.Entry<Integer,Book> entry:library.getColeccioLlibres().entrySet()){
             Book book = entry.getValue();
 
-            if(book.isDisponible()){
+            if(book.getDisponible() == 1){
                 available.add(book);
             }
         }

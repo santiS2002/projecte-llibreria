@@ -9,11 +9,11 @@ public class Loan {
      private int loanId;
     private Book book;
     private Person person;
-    private Date loanDate;
-    private Date dueDate;
-    private Date returnDate;
+    private String loanDate;
+    private String dueDate;
+    private String returnDate;
 
-    public Loan(int loanId, Book book, Person person, Date loanDate, Date dueDate, Date returnDate) {
+    public Loan(int loanId, Book book, Person person, String loanDate, String dueDate, String returnDate) {
         this.loanId = loanId;
         this.book = book;
         this.person = person;
@@ -24,6 +24,8 @@ public class Loan {
 
     public Loan() {
     }
+
+
 
     public int getLoanId() {
         return loanId;
@@ -49,27 +51,27 @@ public class Loan {
         this.person = person;
     }
 
-    public Date getLoanDate() {
+    public String getLoanDate() {
         return loanDate;
     }
 
-    public void setLoanDate(Date loanDate) {
+    public void setLoanDate(String loanDate) {
         this.loanDate = loanDate;
     }
 
-    public Date getDueDate() {
+    public String getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
     }
 
-    public Date getReturnDate() {
+    public String getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(Date returnDate) {
+    public void setReturnDate(String returnDate) {
         this.returnDate = returnDate;
     }
 
@@ -77,8 +79,8 @@ public class Loan {
     public String toString() {
         return "Loans{" +
                 "loanId=" + loanId +
-                ", book=" + book +
-                ", person=" + person +
+                ", book=" + (book != null ? "id book: " + book.getId() + " book title: " + book.getTitle() + "book author: " + book.getAuthor() + "book genre: " + book.getGenre() + "is available? " + book.getDisponible() : " fk is null ") +
+                ", person=" + (person != null ? "id person: " + person.getMail() + "person name: " + person.getName() + "person dni: " + person.getDni() + " password: " + person.getPassword() : " fk is null ") +
                 ", loanDate=" + loanDate +
                 ", dueDate=" + dueDate +
                 ", returnDate=" + returnDate +

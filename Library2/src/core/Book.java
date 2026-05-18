@@ -5,9 +5,9 @@ public class Book {
     private String title;
     private String author;
     private String genre;
-    private boolean disponible;
+    private int disponible;
 
-    public Book(int id, String title, String author, String genre, boolean disponible) {
+    public Book(int id, String title, String author, String genre, int disponible) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -47,17 +47,18 @@ public class Book {
         this.genre = genre;
     }
 
-    public boolean isDisponible() {
+
+    public int getDisponible() {
         return disponible;
     }
 
-    public void setDisponible(boolean disponible) {
+    public void setDisponible(int disponible) {
         this.disponible = disponible;
     }
 
     @Override
     public String toString() {
-        String estado = disponible ? "Disponible" : "Prestat";
+        String estado = (this.disponible == 1) ? "Disponible" : "Prestat";
         return String.format("ID: %d | %-20s | %-15s | [%s]", id, title, author, estado);
     }
 }

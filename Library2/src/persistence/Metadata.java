@@ -59,27 +59,13 @@ public class Metadata {
 
             showTablesInfo(dbmd);
             System.out.println("----");
-            showColumns(dbmd, "Album");
+            showColumns(dbmd, "BOOKS");
             System.out.println("----");
-            showColumns(dbmd,"Artist");
+            showColumns(dbmd,"PERSONS");
             System.out.println("----");
-            showColumns(dbmd,"Customer");
+            showColumns(dbmd,"LOANS");
             System.out.println("----");
-            showColumns(dbmd,"Employee");
-            System.out.println("----");
-            showColumns(dbmd,"Genre");
-            System.out.println("----");
-            showColumns(dbmd,"Invoice");
-            System.out.println("----");
-            showColumns(dbmd,"InvoiceLine");
-            System.out.println("----");
-            showColumns(dbmd,"MediaType");
-            System.out.println("----");
-            showColumns(dbmd,"Playlist");
-            System.out.println("----");
-            showColumns(dbmd,"PlaylistTrack");
-            System.out.println("----");
-            showColumns(dbmd,"Track");
+
 
 
 
@@ -92,4 +78,4 @@ public class Metadata {
 
 }
 
-}
+

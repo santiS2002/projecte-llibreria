@@ -1,0 +1,34 @@
+Informació de la BD:
+Nom: SQLite
+Driver: SQLiteJDBC
+URL: jdbc:sqlite:C:\Users\Usuario\Documents\2N DAM\M3 PROGRAMACIÓ 2025-2026\SCRUM\projecte-llibreria\identifier.sqlite
+Usuari: null
+----
+TABLE - Cataleg: null, Esquema: null, Nom: BOOKS
+TABLE - Cataleg: null, Esquema: null, Nom: PERSONS
+TABLE - Cataleg: null, Esquema: null, Nom: LOANS
+TABLE - Cataleg: null, Esquema: null, Nom: sqlite_sequence
+----
+Columnes de la taula: BOOKS
+Columna: ID, Tipus: INTEGER, Mida: 2000000000, Pot ser nul·la? Y
+Columna: TITLE, Tipus: TEXT, Mida: 2000000000, Pot ser nul·la? N
+Columna: AUTHOR, Tipus: TEXT, Mida: 2000000000, Pot ser nul·la? N
+Columna: GENRE, Tipus: TEXT, Mida: 2000000000, Pot ser nul·la? Y
+Columna: AVAILABLE, Tipus: INTEGER, Mida: 2000000000, Pot ser nul·la? Y
+----
+Columnes de la taula: PERSONS
+Columna: MAIL, Tipus: TEXT, Mida: 2000000000, Pot ser nul·la? Y
+Columna: NAME, Tipus: TEXT, Mida: 2000000000, Pot ser nul·la? N
+Columna: DNI, Tipus: TEXT, Mida: 2000000000, Pot ser nul·la? N
+Columna: PASSWORD, Tipus: TEXT, Mida: 2000000000, Pot ser nul·la? N
+----
+Columnes de la taula: LOANS
+Columna: ID_LOAN, Tipus: INTEGER, Mida: 2000000000, Pot ser nul·la? Y
+Columna: BOOK_ID, Tipus: INTEGER, Mida: 2000000000, Pot ser nul·la? N
+Columna: MEMBER_MAIL, Tipus: TEXT, Mida: 2000000000, Pot ser nul·la? N
+Columna: LOAN_DATE, Tipus: TEXT, Mida: 2000000000, Pot ser nul·la? Y
+Columna: DUE_DATE, Tipus: TEXT, Mida: 2000000000, Pot ser nul·la? Y
+Columna: RETURN_DATE, Tipus: TEXT, Mida: 2000000000, Pot ser nul·la? Y
+----
+
+Process finished with exit code 0
