@@ -6,14 +6,14 @@
 PRAGMA foreign_keys = ON;
 
 -- Eliminar taules si ja existeixen per evitar errors al reexecutar
-DROP TABLE IF EXISTS LOANS;
+/*DROP TABLE IF EXISTS LOANS;
 DROP TABLE IF EXISTS BOOKS;
-DROP TABLE IF EXISTS PERSONS;
+DROP TABLE IF EXISTS PERSONS;*/
 
 --------------------------------------------------------
 --  DDL for Table BOOKS
 --------------------------------------------------------
-CREATE TABLE BOOKS (
+CREATE TABLE IF NOT EXISTS BOOKS (
     ID INTEGER PRIMARY KEY,
     TITLE TEXT NOT NULL,
     AUTHOR TEXT NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE BOOKS (
 --------------------------------------------------------
 --  DDL for Table PERSONS
 --------------------------------------------------------
-CREATE TABLE PERSONS (
+CREATE TABLE IF NOT EXISTS PERSONS (
     MAIL TEXT PRIMARY KEY,
     NAME TEXT NOT NULL,
     DNI TEXT NOT NULL UNIQUE,
@@ -34,7 +34,7 @@ CREATE TABLE PERSONS (
 --------------------------------------------------------
 --  DDL for Table LOANS
 --------------------------------------------------------
-CREATE TABLE LOANS (
+CREATE TABLE IF NOT EXISTS LOANS (
     ID_LOAN INTEGER PRIMARY KEY AUTOINCREMENT,
     BOOK_ID INTEGER NOT NULL,
     MEMBER_MAIL TEXT NOT NULL,

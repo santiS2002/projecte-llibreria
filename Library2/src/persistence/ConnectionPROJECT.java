@@ -8,14 +8,12 @@ import java.sql.SQLException;
 public class ConnectionPROJECT {
 
     //    private static final String DB_URL = "jdbc:sqlite:data/chinook.sqlite";
-    private static final String DB_URL =
-            "jdbc:sqlite:" + Path.of("identifier.sqlite").toAbsolutePath();
+     private static final String DB_URL = "jdbc:sqlite:identifier.sqlite";
+
     public static Connection getConnection() throws SQLException, ClassNotFoundException {
         Class.forName("org.sqlite.JDBC");
-
         return DriverManager.getConnection(DB_URL);
     }
-
     public static void main(String[] args) {
         try (Connection conn = ConnectionPROJECT.getConnection()) {
             System.out.println("Connected to SQLite database!");

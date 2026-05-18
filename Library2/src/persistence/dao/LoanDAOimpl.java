@@ -162,14 +162,42 @@ public class LoanDAOimpl implements  LoanDAO{
 
         return null;
     }
+@Override
+    public boolean deleteLoanById(int id) throws SQLException, ClassNotFoundException {
+        String query = "DELETE FROM LOANS WHERE ID_LOAN = ?";
 
-    @Override
-    public boolean deleteLoanById(int id) {
-        return false;
+        try (
+                Connection connection = ConnectionPROJECT.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ) {
+            preparedStatement.setInt(1, id);
+
+            int rowsDeleted = preparedStatement.executeUpdate();
+            return rowsDeleted > 0; // Retorna true si s'ha esborrat
+        }
     }
 
     @Override
     public boolean updateLoanById(int loanId, Book book, Person person, String loanDate, String dueDate, String returnDate) {
-        return false;
+        String query = "UPDATE LOANS SET BOOK_ID = ?, MEMBER_MAIL = ?, LOAN_DATE = ?, DUE_DATE = ?, RETURN_DATE = ? WHERE ID_LOAN = ?";
+
+        try (
+                Connection connection = ConnectionPROJECT.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ) {
+            preparedStatement.setInt(1, book.getId());
+            preparedStatement.setString(2, person.getMail());
+            preparedStatement.setString(3, loanDate);
+            preparedStatement.setString(4, dueDate);
+            preparedStatement.setString(5, returnDate);
+            preparedStatement.setInt(6, loanId);
+
+            int rowsUpdated = preparedStatement.executeUpdate();
+            return rowsUpdated > 0; // Retorna true si s'ha modificat
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

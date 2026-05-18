@@ -12,7 +12,7 @@ public interface LoanDAO {
     Loan readLoanById(int id) throws SQLException, ClassNotFoundException;
     List<Loan> readAllLoans() throws SQLException, ClassNotFoundException;
     Loan createLoan(Book book, Person person, String loanDate, String dueDate, String returnDate) throws SQLException, ClassNotFoundException;
-    boolean deleteLoanById(int id);
+    boolean deleteLoanById(int id) throws SQLException, ClassNotFoundException;
     boolean updateLoanById(int loanId, Book book, Person person, String loanDate, String dueDate, String returnDate);
 
 }
