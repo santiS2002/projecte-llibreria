@@ -1,11 +1,10 @@
 package gui;
 
-import services.Manager;
+import services.LibrarySystem;
 import core.Person;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.management.MemoryNotificationInfo;
 
 public class Login extends JFrame {
     private JLabel loginLabel;
@@ -17,10 +16,10 @@ public class Login extends JFrame {
     private JPanel Login;
     private JPasswordField passField;
     private int loginCounter = 0;
-    private Manager manager;
+    private LibrarySystem controller;
 
-    public Login(Manager manager) {
-        this.manager = manager;
+    public Login(LibrarySystem controller) {
+        this.controller = controller;
 
         setContentPane(Login);
         setTitle("User login");
@@ -35,22 +34,21 @@ public class Login extends JFrame {
                 String mail = mailField.getText();
                 String password = new String(passField.getPassword());
 
-                Person userLoged = manager.login(mail,password);
+                Person userLoged = controller.login(mail, password);
 
                 if(userLoged != null){
                     JOptionPane.showMessageDialog(null,"Correct login!");
                     Login.this.dispose();
 
-                    new UserMenu(manager,mail);
+                    new UserMenu(controller, mail);
 
                     loginCounter = 0;
 
                 }else if (loginCounter >= 2) {
-                        JOptionPane.showMessageDialog(null, "Too many attempts. The application will be locked for 5 seconds.");
-                    manager.sendSecurityAlert(mail);
+                    JOptionPane.showMessageDialog(null, "Too many attempts. The application will be locked for 5 seconds.");
+                    controller.sendSecurityAlert(mail);
 
                     try {
-
                         Thread.sleep(5000);
                     } catch (Exception error) {
                         System.err.println("Error");
@@ -63,10 +61,7 @@ public class Login extends JFrame {
 
                 mailField.setText("");
                 passField.setText("");
-
             }
         });
     }
-
-
 }

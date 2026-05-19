@@ -1,23 +1,22 @@
 package gui;
 
-import services.Manager;
+import services.LibrarySystem;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class BorrowBook extends JFrame {
-
     private JTextField bookName;
     private JPanel borrowBook;
     private JButton borrow;
     private JLabel desiredBook;
     private JButton exitButton;
     private String mail;
-    private Manager manager;
+    private LibrarySystem controller;
 
-    public BorrowBook(Manager manager,String mail) {
-       this.mail = mail;
-       this.manager = manager;
+    public BorrowBook(LibrarySystem controller, String mail) {
+        this.mail = mail;
+        this.controller = controller;
         setContentPane(borrowBook);
         setTitle("User Menu");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -30,21 +29,20 @@ public class BorrowBook extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String name = bookName.getText();
 
-                if(manager.borrowBook(mail,name)){
+                if(controller.borrowBook(mail, name)){
                     JOptionPane.showMessageDialog(null,"Book borrowed correctly!");
                 }else{
                     JOptionPane.showMessageDialog(null,"Unavailable book");
                 }
 
                 bookName.setText("");
-
-                }
+            }
         });
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 BorrowBook.this.dispose();
-                new UserMenu(manager,mail);
+                new UserMenu(controller, mail);
             }
         });
     }

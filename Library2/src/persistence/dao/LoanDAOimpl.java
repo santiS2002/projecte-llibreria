@@ -1,6 +1,7 @@
 package persistence.dao;
 
 import core.Book;
+import core.Loan;
 import core.Person;
 import core.User;
 import persistence.ConnectionPROJECT;
@@ -10,6 +11,46 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LoanDAOimpl implements  LoanDAO{
+
+    @Override
+    public boolean createLoan(String mail, int bookId) throws SQLException, ClassNotFoundException {
+        String query = "INSERT INTO LOANS (BOOK_ID, MEMBER_MAIL, LOAN_DATE, DUE_DATE, RETURN_DATE) VALUES (?, ?, ?, ?, NULL)";
+
+        try (
+                Connection connection = ConnectionPROJECT.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query)
+        ) {
+            preparedStatement.setInt(1, bookId);
+            preparedStatement.setString(2, mail);
+
+            java.time.LocalDate today = java.time.LocalDate.now();
+            java.time.LocalDate dueDate = today.plusDays(15);
+
+            preparedStatement.setString(3, today.toString());
+            preparedStatement.setString(4, dueDate.toString());
+
+            int rowsInserted = preparedStatement.executeUpdate();
+            return rowsInserted > 0;
+        }
+    }
+
+    @Override
+    public boolean returnLoan(String mail, int bookId) throws SQLException, ClassNotFoundException {
+        String query = "UPDATE LOANS SET RETURN_DATE = ? WHERE MEMBER_MAIL = ? AND BOOK_ID = ? AND RETURN_DATE IS NULL";
+
+        try (
+                Connection connection = ConnectionPROJECT.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query)
+        ) {
+            java.time.LocalDate today = java.time.LocalDate.now();
+            preparedStatement.setString(1, today.toString());
+            preparedStatement.setString(2, mail);
+            preparedStatement.setInt(3, bookId);
+
+            int rowsUpdated = preparedStatement.executeUpdate();
+            return rowsUpdated > 0;
+        }
+    }
     @Override
     public Loan readLoanById(int id) throws SQLException, ClassNotFoundException {
 

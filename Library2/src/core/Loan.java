@@ -1,9 +1,4 @@
-package persistence.dao;
-
-import core.Book;
-import core.Person;
-
-import java.sql.Date;
+package core;
 
 public class Loan {
      private int loanId;

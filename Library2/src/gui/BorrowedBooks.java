@@ -1,6 +1,6 @@
 package gui;
 
-import services.Manager;
+import services.LibrarySystem;
 import core.Book;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -12,16 +12,16 @@ public class BorrowedBooks extends JFrame {
     private JList<String> list;
     private JButton exit;
     private String mail;
-    private Manager manager;
+    private LibrarySystem controller;
 
-    public BorrowedBooks(String mail, Manager manager) {
+    public BorrowedBooks(String mail, LibrarySystem controller) {
         this.mail = mail;
-        this.manager = manager;
+        this.controller = controller;
 
         setContentPane(borrowedBooksList);
         DefaultListModel<String> model = new DefaultListModel<>();
 
-        ArrayList<Book> books = manager.seeBooksBorrowed(mail);
+        ArrayList<Book> books = controller.seeBooksBorrowed(mail);
 
         if(books != null){
             for(Book book: books){
@@ -36,12 +36,11 @@ public class BorrowedBooks extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
 
-
         exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 BorrowedBooks.this.dispose();
-                new UserMenu(manager,mail);
+                new UserMenu(controller, mail);
             }
         });
     }

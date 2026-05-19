@@ -1,6 +1,6 @@
 package gui;
 
-import services.Manager;
+import services.LibrarySystem;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,10 +12,10 @@ public class ReturnBook extends JFrame{
     private JLabel bookNameLabel;
     private JButton exitButton;
     private String mail;
-    private Manager manager;
+    private LibrarySystem controller;
 
-    public ReturnBook(Manager manager,String mail) {
-        this.manager = manager;
+    public ReturnBook(LibrarySystem controller, String mail) {
+        this.controller = controller;
         this.mail = mail;
 
         setContentPane(returnBookPanel);
@@ -28,10 +28,9 @@ public class ReturnBook extends JFrame{
         returnBook.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 String name = bookToReturnField.getText();
 
-                if (manager.returnBook(mail, name)) {
+                if (controller.returnBook(mail, name)) {
                     JOptionPane.showMessageDialog(null, name + " returned successfully!");
                 } else {
                     JOptionPane.showMessageDialog(null, "You do not have this book on loan.");
@@ -45,7 +44,7 @@ public class ReturnBook extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 ReturnBook.this.dispose();
-                new UserMenu(manager,mail);
+                new UserMenu(controller, mail);
             }
         });
     }

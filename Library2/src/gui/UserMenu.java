@@ -1,9 +1,7 @@
 package gui;
 
-import services.Manager;
+import services.LibrarySystem;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class UserMenu extends JFrame {
     private JPanel userMenuPanel;
@@ -12,60 +10,54 @@ public class UserMenu extends JFrame {
     private JButton borrowedBooksButton;
     private JButton returnBookButton;
     private JButton borrowBookButton;
+    private JButton addBookButton;
     private JButton exitButton;
-
     private String email;
-    private Manager manager;
+    private LibrarySystem controller;
 
-    public UserMenu(Manager manager, String email) {
-        this.manager = manager;
+    public UserMenu(LibrarySystem controller, String email) {
+        this.controller = controller;
         this.email = email;
 
         setContentPane(userMenuPanel);
         setTitle("User Menu - " + email);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(400, 400);
+        setSize(400, 450);
         setLocationRelativeTo(null);
         setVisible(true);
 
-        borrowBookButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                UserMenu.this.dispose();
-                new BorrowBook(manager, email);
-            }
+        addBookButton.setVisible(controller.isAdmin(email));
+        userMenuPanel.revalidate();
+        userMenuPanel.repaint();
+
+        borrowBookButton.addActionListener(e -> {
+            dispose();
+            new BorrowBook(controller, email);
         });
 
-        returnBookButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                UserMenu.this.dispose();
-                new ReturnBook(manager, email);
-            }
+        returnBookButton.addActionListener(e -> {
+            dispose();
+            new ReturnBook(controller, email);
         });
 
-        borrowedBooksButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                UserMenu.this.dispose();
-                new BorrowedBooks(email,manager);
-            }
+        borrowedBooksButton.addActionListener(e -> {
+            dispose();
+            new BorrowedBooks(email, controller);
         });
 
-        availableBooksButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                UserMenu.this.dispose();
-                new AvailableBooks(manager, email);
-            }
+        availableBooksButton.addActionListener(e -> {
+            dispose();
+            new AvailableBooks(controller, email);
         });
 
-        exitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                UserMenu.this.dispose();
-                new MainPage(manager);
-            }
+        addBookButton.addActionListener(e -> {
+            dispose();
+            new AddBook(controller, email);
+        });
+
+        exitButton.addActionListener(e -> {
+            dispose();
+            new MainPage(controller);
         });
     }
 }

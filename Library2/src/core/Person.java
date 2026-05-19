@@ -1,8 +1,6 @@
 package core;
 
 
-import persistence.dao.Loan;
-
 import java.util.List;
 
 public abstract class Person {
